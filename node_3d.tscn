@@ -6,13 +6,11 @@
 [node name="Node3D" type="Node3D" unique_id=1435023888]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1128564224]
+transform = Transform3D(1, 0, 0, 0, 0.8577842, 0.51400995, 0, -0.51400995, 0.8577842, 4.0087957, 29.279194, 24.29042)
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1565517979]
 mesh_library = ExtResource("1_noarx")
 cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(65533, 65535, 0, 65533, 0, 0, 65534, 1, 0, 65534, 0, 196609, 65533, 1, 0, 65532, 0, 0, 131069, 0, 0, 65535, 1, 196609, 131070, 1, 196609, 131069, 1, 0, 196605, 1, 0, 131069, 2, 0, 131068, 1, 0, 65532, 1, 0, 65532, 2, 0, 65533, 2, 0, 65533, 3, 0, 65534, 2, 196609, 65531, 1, 0)
-}
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Generator" type="Node" parent="GridMap" unique_id=2060216467]
