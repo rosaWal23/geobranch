@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://p8xykcc2osj5" path="res://generator.gd" id="1_a202f"]
 [ext_resource type="MeshLibrary" uid="uid://dckw1v5rdo0xs" path="res://Blocks.meshlib" id="1_noarx"]
-[ext_resource type="Script" uid="uid://8fcphsi30wj" path="res://perlin.gd" id="3_a0tk4"]
 
 [node name="Node3D" type="Node3D" unique_id=1435023888]
 
@@ -18,5 +17,3 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 script = ExtResource("1_a202f")
 
 [node name="perlin" type="Node" parent="." unique_id=190724079]
-unique_name_in_owner = true
-script = ExtResource("3_a0tk4")

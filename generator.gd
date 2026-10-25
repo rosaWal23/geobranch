@@ -1,13 +1,12 @@
 extends Node
 @onready var grid_map: GridMap = $".."
-@onready var perlin: Node = %perlin
+
 
 
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var noise = perlin.duplicate()
+func _ready() -> void:	var noise = perlin.duplicate(DUPLICATE_DEFAULT | DUPLICATE_SCRIPTS)
 	
 	
 	
