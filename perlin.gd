@@ -1,7 +1,7 @@
 extends Node
 
 var seed_perlin = "Test"
-var scale_perlin = 1
+var scale_perlin: float = 1
 
 func fade(x: float): 
 	#0 for values below 0

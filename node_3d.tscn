@@ -16,4 +16,5 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Generator" type="Node" parent="GridMap" unique_id=2060216467]
 script = ExtResource("1_a202f")
 
-[node name="perlin" type="Node" parent="." unique_id=190724079]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1806554155]
+transform = Transform3D(0.95791924, 0.21876538, -0.18582915, 0, 0.6474028, 0.762148, 0.2870379, -0.73007625, 0.6201596, 0, 0, 0)
