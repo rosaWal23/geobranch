@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://clhjohlksx2uy"]
 
+[ext_resource type="Script" uid="uid://yb8uwvbaymwq" path="res://player.gd" id="1_a0tk4"]
 [ext_resource type="Script" uid="uid://p8xykcc2osj5" path="res://generator.gd" id="1_a202f"]
 [ext_resource type="MeshLibrary" uid="uid://dckw1v5rdo0xs" path="res://Blocks.meshlib" id="1_noarx"]
 
 [node name="Node3D" type="Node3D" unique_id=1435023888]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1128564224]
-transform = Transform3D(1, 0, 0, 0, 0.8577842, 0.51400995, 0, -0.51400995, 0.8577842, 4.0087957, 29.279194, 24.29042)
+[node name="Player" type="Node3D" parent="." unique_id=1430077588]
+transform = Transform3D(-0.06575395, 0.7490455, -0.6592476, 0.07434161, 0.6625186, 0.74534726, 0.9950627, 0, -0.09924846, -25.224655, 32.34352, 0)
+script = ExtResource("1_a0tk4")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1128564224]
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1565517979]
 mesh_library = ExtResource("1_noarx")
