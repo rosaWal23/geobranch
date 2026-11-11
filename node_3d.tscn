@@ -31,6 +31,9 @@ item/0/navigation_layers = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1758288909]
 environment = SubResource("Environment_4jq5w")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1806554155]
+transform = Transform3D(0.95791924, 0.21876538, -0.18582915, 0, 0.6474028, 0.762148, 0.2870379, -0.73007625, 0.6201596, 0, 0, 0)
+
 [node name="Player" type="Node3D" parent="." unique_id=1430077588]
 transform = Transform3D(-0.06575395, 0.7490455, -0.6592476, 0.07434161, 0.6625186, 0.74534726, 0.9950627, 0, -0.09924846, -25.224655, 32.34352, 0)
 script = ExtResource("1_a0tk4")
@@ -47,6 +50,3 @@ script = ExtResource("1_a202f")
 
 [node name="GeneratedChunks" type="GridMap" parent="GridMap/Generator" unique_id=1074713685]
 mesh_library = SubResource("MeshLibrary_plrnn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1806554155]
-transform = Transform3D(0.95791924, 0.21876538, -0.18582915, 0, 0.6474028, 0.762148, 0.2870379, -0.73007625, 0.6201596, 0, 0, 0)

@@ -1,5 +1,5 @@
 extends Node3D
-@export var speed: float = 10.0
+@export var speed: float = 40.0
 @export var mouse_sensitivity: float = .01
 
 # Called when the node enters the scene tree for the first time.
