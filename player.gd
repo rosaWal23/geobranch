@@ -30,4 +30,4 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x*mouse_sensitivity)
-		global_rotation.x = clamp(rotation.x-event.relative.y*mouse_sensitivity,rad_to_deg(-89),rad_to_deg(89))
+		global_rotation.x = clamp(rotation.x-event.relative.y*mouse_sensitivity,deg_to_rad(-89),deg_to_rad(89))

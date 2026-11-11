@@ -3,17 +3,21 @@
 [ext_resource type="Script" uid="uid://yb8uwvbaymwq" path="res://player.gd" id="1_a0tk4"]
 [ext_resource type="Script" uid="uid://p8xykcc2osj5" path="res://generator.gd" id="1_a202f"]
 [ext_resource type="MeshLibrary" uid="uid://dckw1v5rdo0xs" path="res://Blocks.meshlib" id="1_noarx"]
-[ext_resource type="Texture2D" uid="uid://cqf4aei273oxj" path="res://hangar_interior_4k.exr" id="1_r3fl7"]
+[ext_resource type="Script" uid="uid://pt5767ysh47l" path="res://world_environment.gd" id="1_r3fl7"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tc0ol"]
-panorama = ExtResource("1_r3fl7")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r3fl7"]
 
 [sub_resource type="Sky" id="Sky_bqubg"]
-sky_material = SubResource("PanoramaSkyMaterial_tc0ol")
+sky_material = SubResource("ProceduralSkyMaterial_r3fl7")
 
 [sub_resource type="Environment" id="Environment_4jq5w"]
 background_mode = 2
 sky = SubResource("Sky_bqubg")
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_sky_affect = 0.224
+fog_depth_end = 300.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4jq5w"]
 
@@ -30,6 +34,7 @@ item/0/navigation_layers = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1758288909]
 environment = SubResource("Environment_4jq5w")
+script = ExtResource("1_r3fl7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1806554155]
 transform = Transform3D(0.95791924, 0.21876538, -0.18582915, 0, 0.6474028, 0.762148, 0.2870379, -0.73007625, 0.6201596, 0, 0, 0)
@@ -39,6 +44,7 @@ transform = Transform3D(-0.06575395, 0.7490455, -0.6592476, 0.07434161, 0.662518
 script = ExtResource("1_a0tk4")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1128564224]
+far = 200.0
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1565517979]
 mesh_library = ExtResource("1_noarx")

@@ -2,6 +2,8 @@ extends Node
 
 var seed_perlin = "Test"
 var scale_perlin: float = 1
+var min_y: int = -1
+var y_range: int = 2
 
 func fade(x: float): 
 	#0 for values below 0
@@ -53,4 +55,4 @@ func get_value(x: float,y: float):
 	var d_s = d_se*fade(ax-floor(ax)) + d_sw*(1-fade(ax-floor(ax)))
 	var result = d_n * (1-fade(ay-floor(ay))) + d_s * fade(ay-floor(ay))
 	
-	return(result)
+	return((result+min_y+1)*y_range/2)

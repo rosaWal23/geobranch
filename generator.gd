@@ -19,13 +19,14 @@ func generate_chunk(chunk_x: int,chunk_z: int):
 			var height = 0
 			var block_type = 0
 			if mountainousness_value > 0.05:
-				height = (mountains_noise.get_value(x,z)+1)*50
+				height = mountains_noise.get_value(x,z)
 				block_type = grid_map.mesh_library.find_item_by_name("Stone")
 			elif mountainousness_value < -0.05:
-				height = (plains_noise.get_value(x,z)+1)*5
+				height = plains_noise.get_value(x,z)
 				block_type = grid_map.mesh_library.find_item_by_name("Dirt")
 			elif mountainousness_value >= -0.05 && mountainousness_value <= 0.05:
-				height = ((mountains_noise.get_value(x,z)+1)*50*((mountainousness_value+0.05)*10))+((plains_noise.get_value(x,z)+1)*5*(1-((mountainousness_value+0.2)*2.5)))
+				height = ((mountains_noise.get_value(x,z)*((mountainousness_value+0.05)*10))
+						+(plains_noise.get_value(x,z)*(1-((mountainousness_value+0.05)*10))))
 				block_type = grid_map.mesh_library.find_item_by_name("Grass")
 			for y in range(height):
 				grid_map.set_cell_item(Vector3i(x,y,z),block_type)
@@ -35,21 +36,28 @@ func generate_chunk(chunk_x: int,chunk_z: int):
 func _ready() -> void:
 	plains_noise.seed_perlin = "986968976"
 	plains_noise.scale_perlin = 100
-	mountains_noise.seed_perlin = "urbvviz"
+	plains_noise.min_y = 0
+	plains_noise.y_range = 10
+	
+	mountains_noise.seed_perlin = "ben is the greatest"
 	mountains_noise.scale_perlin = 50
+	mountains_noise.min_y = 0
+	mountains_noise.y_range = 100
+	
 	mountainousness.seed_perlin = "hungergames"
-	mountainousness.scale_perlin = 1000
+	mountainousness.scale_perlin = 700
+ 
 
 
-
-
-
-# Called every frame. 'delta' is the elapsed tim or 3 layerse since the previous frame.
 func _process(delta: float) -> void:
 	var player_chunk_x: int = floor(player.position.x/chunksize)
 	var player_chunk_z: int = floor(player.position.z/chunksize)
+	var chunk_queue: Array = []
 	for chunk_x in range(player_chunk_x-render_distance,player_chunk_x+render_distance,1):
 		for chunk_z in range(player_chunk_z-render_distance, player_chunk_z+render_distance,1):
 			if generated_chunks.get_cell_item(Vector3i(chunk_x,0,chunk_z)) == GridMap.INVALID_CELL_ITEM:
-				generate_chunk(chunk_x,chunk_z)
-				
+				chunk_queue.append([chunk_x,chunk_z])
+	if chunk_queue:
+		for i in range(min(len(chunk_queue),5)):
+			generate_chunk(chunk_queue[0][0],chunk_queue[0][1])
+			chunk_queue.pop_front()
