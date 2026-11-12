@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://p8xykcc2osj5" path="res://generator.gd" id="1_a202f"]
 [ext_resource type="MeshLibrary" uid="uid://dckw1v5rdo0xs" path="res://Blocks.meshlib" id="1_noarx"]
 [ext_resource type="Script" uid="uid://pt5767ysh47l" path="res://world_environment.gd" id="1_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://b775b3iehnhp8" path="res://hud.tscn" id="5_jka67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r3fl7"]
 
@@ -56,3 +57,5 @@ script = ExtResource("1_a202f")
 
 [node name="GeneratedChunks" type="GridMap" parent="GridMap/Generator" unique_id=1074713685]
 mesh_library = SubResource("MeshLibrary_plrnn")
+
+[node name="Hud" parent="." unique_id=2144390109 instance=ExtResource("5_jka67")]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b775b3iehnhp8"]
+
+[ext_resource type="Script" uid="uid://clds7g13q2jvy" path="res://rich_text_label.gd" id="1_37p78"]
+
+[node name="Hud" type="CanvasLayer" unique_id=2144390109]
+
+[node name="Control" type="Control" parent="." unique_id=7744698]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=850682247]
+layout_mode = 1
+offset_left = 36.0
+offset_top = 30.0
+offset_right = 136.0
+offset_bottom = 130.0
+mouse_filter = 2
+script = ExtResource("1_37p78")
