@@ -46,6 +46,8 @@ func _ready() -> void:
 	
 	mountainousness.seed_perlin = "hungergames"
 	mountainousness.scale_perlin = 700
+	
+	grid_map.cell_octant_size = 32
  
 
 
