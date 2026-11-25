@@ -19,7 +19,7 @@ func load_biome(config: ConfigFile):
 			"meta":
 				main_block = config.get_value(section,"main_block")
 				for i in range(config.get_value(section,"max_height")):
-					fixed.append(null)
+					fixed.append(main_block)
 			var check when check.begins_with("octave"):
 				noise_providers.append(null)
 				frequencys.append(config.get_value(section,"frequency"))
@@ -43,7 +43,7 @@ func load_biome(config: ConfigFile):
 
 func init_providers():
 	var rng = RandomNumberGenerator.new()
-	rng.seed = main_seed
+	rng.seed = hash(main_seed)
 	for i in range(len(noise_providers)):
 		noise_providers[i] = perlin.new()
 		noise_providers[i].scale_perlin = frequencys[i]

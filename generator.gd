@@ -3,10 +3,11 @@ extends Node
 @onready var generated_chunks: GridMap = $GeneratedChunks
 @onready var player: Node3D = $"../../Player"
 const perlin = preload("res://perlin.gd")
+const BiomeProvider = preload("res://biome_provider.gd")
 const chunksize: int = 8
 const render_distance: int = 10
-var plains_noise = perlin.new()
-var mountains_noise = perlin.new()
+var plains_provider = BiomeProvider.new()
+var mountains_provider = BiomeProvider.new()
 var mountainousness = perlin.new()
 
 
@@ -17,33 +18,34 @@ func generate_chunk(chunk_x: int,chunk_z: int):
 		for z in range(offset_z,offset_z+chunksize,1):
 			var mountainousness_value = mountainousness.get_value(x,z)
 			var height = 0
-			var block_type = 0
+			var slice:Array = []
 			if mountainousness_value > 0.05:
-				height = mountains_noise.get_value(x,z)
-				block_type = grid_map.mesh_library.find_item_by_name("Stone")
+				height = mountains_provider.get_height(x,z)
+				slice = mountains_provider.make_slice(height)
 			elif mountainousness_value < -0.05:
-				height = plains_noise.get_value(x,z)
-				block_type = grid_map.mesh_library.find_item_by_name("Dirt")
+				height = plains_provider.get_height(x,z)
+				slice = plains_provider.make_slice(height)
 			elif mountainousness_value >= -0.05 && mountainousness_value <= 0.05:
-				height = ((mountains_noise.get_value(x,z)*((mountainousness_value+0.05)*10))
-						+(plains_noise.get_value(x,z)*(1-((mountainousness_value+0.05)*10))))
-				block_type = grid_map.mesh_library.find_item_by_name("Grass")
-			for y in range(height):
-				grid_map.set_cell_item(Vector3i(x,y,z),block_type)
+				height = ((mountains_provider.get_height(x,z)*((mountainousness_value+0.05)*10))
+						+(plains_provider.get_height(x,z)*(1-((mountainousness_value+0.05)*10))))
+				if mountainousness_value > 0:
+					slice = mountains_provider.make_slice(height)
+				else:
+					slice = plains_provider.make_slice(height)
+			for y in range(len(slice)):
+				grid_map.set_cell_item(Vector3i(x,y,z),slice[y])
 	generated_chunks.set_cell_item(Vector3i(chunk_x,0,chunk_z),1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	plains_noise.seed_perlin = "986968976"
-	plains_noise.scale_perlin = 100
-	plains_noise.min_y = 0
-	plains_noise.y_range = 10
+	var config_plains = ConfigFile.new()
+	config_plains.load("res://plains.cfg")
+	plains_provider.load_biome(config_plains)
 	
-	mountains_noise.seed_perlin = "ben is the greatest"
-	mountains_noise.scale_perlin = 50
-	mountains_noise.min_y = 0
-	mountains_noise.y_range = 100
-	
+	var config_mountains = ConfigFile.new()
+	config_mountains.load("res://mountains.cfg")
+	mountains_provider.load_biome(config_mountains)
+
 	mountainousness.seed_perlin = "hungergames"
 	mountainousness.scale_perlin = 700
 	
